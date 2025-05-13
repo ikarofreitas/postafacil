@@ -226,7 +226,7 @@ const HomePage: React.FC = () => {
               <Button 
                 variant="secondary" 
                 size="lg"
-                className="bg-white text-black hover:bg-gray-100 hover:text-white"
+                className="bg-white text-gray-950 hover:bg-gray-100 hover:scale-105"
               >
                 Experimente Grátis por 7 Dias
               </Button>

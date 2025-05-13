@@ -212,7 +212,7 @@ const HowItWorksPage: React.FC = () => {
 
       {/* CTA Section */}
       <section className="py-16 md:py-24 bg-primary/10">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-4 text-center items-center justify-center flex flex-col">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
             Comece a Criar Conteúdo Profissional Hoje
           </h2>
@@ -220,7 +220,9 @@ const HowItWorksPage: React.FC = () => {
             Experimente o PostaFácil gratuitamente e veja como é simples transformar seu marketing.
           </p>
           <Link to="/cadastro">
-            <Button size="lg">
+            <Button 
+            size="lg"
+            className=''>
               Experimente Grátis
             </Button>
           </Link>
