@@ -71,14 +71,14 @@ const HomePage: React.FC = () => {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="text-center lg:text-left">
-              <div className="inline-block bg-primary/10 text-primary font-medium rounded-full px-4 py-1 text-sm mb-6">
+              <div className="inline-block bg-primary/10 text-primary font-medium rounded-full px-4 py-1 text-sm mb-6 cursor-default">
                 Feito para Microempreendedores
               </div>
-              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight">
+              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight cursor-default">
                 Marketing Profissional com IA. <br />
                 <span className="text-primary">Sem complicação.</span>
               </h1>
-              <p className="text-xl text-gray-600 mb-8 max-w-lg mx-auto lg:mx-0">
+              <p className="text-xl text-gray-600 mb-8 max-w-lg mx-auto lg:mx-0 cursor-default">
                 Crie posts para Instagram, descrições de produtos e campanhas em segundos. Focado em pequenos negócios, com linguagem simples e personalizada.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
@@ -109,10 +109,10 @@ const HomePage: React.FC = () => {
       <section className="py-16 md:py-24 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 cursor-default">
               Teste Agora o <span className="text-primary">PostaFácil</span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto cursor-default">
               Experimente grátis o nosso gerador de conteúdo e veja o poder da IA trabalhando pelo seu negócio.
             </p>
           </div>
@@ -127,10 +127,10 @@ const HomePage: React.FC = () => {
       <section className="py-16 md:py-24 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 cursor-default">
               Como Funciona
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto cursor-default">
               Crie marketing profissional para seu negócio em três passos simples.
             </p>
           </div>
@@ -161,10 +161,10 @@ const HomePage: React.FC = () => {
               />
             </div>
             <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 cursor-default">
                 Criado para o Pequeno Empreendedor
               </h2>
-              <p className="text-xl text-gray-600 mb-8">
+              <p className="text-xl text-gray-600 mb-8 cursor-default">
                 O PostaFácil foi desenvolvido pensando nas necessidades específicas de quem tem um pequeno negócio e não tem tempo ou recursos para contratar uma agência de marketing.
               </p>
               
@@ -175,8 +175,8 @@ const HomePage: React.FC = () => {
                       {item.icon}
                     </div>
                     <div>
-                      <h3 className="text-xl font-bold text-gray-800 mb-1">{item.title}</h3>
-                      <p className="text-gray-600">{item.description}</p>
+                      <h3 className="text-xl font-bold text-gray-800 mb-1 cursor-default">{item.title}</h3>
+                      <p className="text-gray-600 cursor-default">{item.description}</p>
                     </div>
                   </div>
                 ))}
@@ -190,10 +190,10 @@ const HomePage: React.FC = () => {
       <section className="py-16 md:py-24 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 cursor-default">
               O Que Dizem Nossos Clientes
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto cursor-default">
               Empreendedores como você já estão transformando seu marketing com o PostaFácil.
             </p>
           </div>
@@ -215,10 +215,10 @@ const HomePage: React.FC = () => {
       {/* CTA Section */}
       <section className="py-16 md:py-24 bg-primary">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 cursor-default">
             Pronto para Impulsionar seu Negócio?
           </h2>
-          <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
+          <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto cursor-default">
             Junte-se a milhares de empreendedores que já economizam tempo e dinheiro com o PostaFácil.
           </p>
           <div className="flex justify-center">
@@ -226,7 +226,7 @@ const HomePage: React.FC = () => {
               <Button 
                 variant="secondary" 
                 size="lg"
-                className="bg-white text-gray-950 hover:bg-gray-100 hover:scale-105"
+                className="bg-white text-black hover:bg-gray-100 hover:scale-105"
               >
                 Experimente Grátis por 7 Dias
               </Button>

@@ -9,7 +9,7 @@ interface TestimonialProps {
 
 const TestimonialCard: React.FC<TestimonialProps> = ({ name, business, quote, image }) => {
   return (
-    <div className="bg-white rounded-xl shadow-lg p-6 md:p-8 transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl">
+    <div className="bg-white rounded-xl shadow-lg p-6 md:p-8 transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl cursor-default">
       <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 mb-4">
         <img 
           src={image} 

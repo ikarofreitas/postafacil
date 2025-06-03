@@ -47,8 +47,8 @@ const ContentGenerator: React.FC = () => {
   return (
     <div className="bg-white rounded-xl shadow-lg p-6 md:p-8">
       <div className="mb-6">
-        <h3 className="text-xl font-bold text-gray-800 mb-2">Gere seu conteúdo</h3>
-        <p className="text-gray-600">
+        <h3 className="text-xl font-bold text-gray-800 mb-2 cursor-default">Gere seu conteúdo</h3>
+        <p className="text-gray-600 cursor-default">
           Descreva brevemente o que você quer divulgar para o seu negócio
         </p>
       </div>

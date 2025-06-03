@@ -11,7 +11,7 @@ interface FeatureCardProps {
 const FeatureCard: React.FC<FeatureCardProps> = ({ icon, title, description, index }) => {
   return (
     <div 
-      className="bg-white rounded-xl shadow-md p-6 transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+      className="bg-white rounded-xl shadow-md p-6 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 cursor-default"
       style={{ animationDelay: `${index * 0.2}s` }}
     >
       <div className="flex flex-col items-center text-center sm:flex-row sm:text-left sm:items-start">

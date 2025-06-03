@@ -163,7 +163,7 @@ const PricingPage: React.FC = () => {
       {/* Guarantee Section */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4 max-w-4xl">
-          <div className="bg-white border border-gray-200 rounded-xl p-8 text-center shadow-sm">
+          <div className="bg-white border border-gray-200 rounded-xl p-8 text-center shadow-sm flex flex-col items-center">
             <h2 className="text-2xl font-bold text-gray-900 mb-4">
               Garantia de 7 Dias
             </h2>
@@ -207,7 +207,7 @@ const PricingPage: React.FC = () => {
 
       {/* CTA Section */}
       <section className="py-16 md:py-24 bg-primary">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-4 text-center flex flex-col items-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
             Pronto para Transformar seu Marketing?
           </h2>
@@ -218,7 +218,7 @@ const PricingPage: React.FC = () => {
             <Button 
               variant="secondary" 
               size="lg"
-              className="bg-white text-primary hover:bg-gray-100"
+              className="bg-white text-black hover:bg-gray-100"
             >
               Começar Agora
             </Button>
