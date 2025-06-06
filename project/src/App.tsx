@@ -8,8 +8,20 @@ import PricingPage from './pages/PricingPage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import ScrollToTop from './utils/ScrollToTop';
+import { api } from './services/api';
+import { useEffect, useState } from 'react';
 
 function App() {
+
+ useEffect(() => {
+  loadCustomers();
+ }, []);
+
+ async function loadCustomers(){
+  const response = await api.get('/users/customers');
+  console.log(response.data);
+ }
+
   return (
     <Router>
       <ScrollToTop />

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Mail, Lock, Eye, EyeOff, User, Store, MapPin } from 'lucide-react';
 import Button from '../components/Button';
@@ -21,6 +21,7 @@ const regions = [
 ];
 
 const RegisterPage: React.FC = () => {
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -54,11 +55,9 @@ const RegisterPage: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    
-    // Simulate registration process
     setTimeout(() => {
-      setIsLoading(false);
-      // This would handle the actual registration logic in a real app
+    setIsLoading(false);
+
     }, 1500);
   };
 
