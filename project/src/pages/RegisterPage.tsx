@@ -1,7 +1,9 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Mail, Lock, Eye, EyeOff, User, Store, MapPin } from 'lucide-react';
 import Button from '../components/Button';
+import { api } from '../services/api';
+import { toast } from 'react-toastify';
 
 const businessCategories = [
   { value: 'food', label: 'Alimentação (Restaurante, Padaria, etc)' },
@@ -21,6 +23,8 @@ const regions = [
 ];
 
 const RegisterPage: React.FC = () => {
+
+  
 
   const [formData, setFormData] = useState({
     name: '',
@@ -52,13 +56,18 @@ const RegisterPage: React.FC = () => {
     setStep(step - 1);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
+    try {
     e.preventDefault();
     setIsLoading(true);
-    setTimeout(() => {
+    const data = await api.post('/users/customer', formData);
     setIsLoading(false);
-
-    }, 1500);
+    console.log(data);
+    } catch (error) {
+      toast.error('Erro ao criar conta');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
