@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import { Mail, Lock, Eye, EyeOff, User, Store, MapPin } from 'lucide-react';
 import Button from '../components/Button';
 import { api } from '../services/api';
-import { toast } from 'react-toastify';
+import { toast, ToastContainer, Bounce } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const businessCategories = [
   { value: 'food', label: 'Alimentação (Restaurante, Padaria, etc)' },
@@ -63,8 +64,13 @@ const RegisterPage: React.FC = () => {
     const data = await api.post('/users/customer', formData);
     setIsLoading(false);
     console.log(data);
-    } catch (error) {
-      toast.error('Erro ao criar conta');
+    } catch (error: any) {
+      if (error.response && error.response.status === 400) {
+        const message = error.response.data.message || 'Este email já está em uso';
+        toast.error(message);
+      } else {
+        toast.error('Erro inesperado ao criar conta');
+      }
     } finally {
       setIsLoading(false);
     }
@@ -72,6 +78,19 @@ const RegisterPage: React.FC = () => {
 
   return (
     <div className="min-h-screen pt-20 pb-16 flex flex-col justify-center bg-gray-50">
+      <ToastContainer
+position="top-right"
+autoClose={5000}
+hideProgressBar={false}
+newestOnTop={false}
+closeOnClick={false}
+rtl={false}
+pauseOnFocusLoss
+draggable
+pauseOnHover
+theme="colored"
+transition={Bounce}
+/>
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <div className="text-center">
           <h2 className="text-3xl font-bold text-gray-900">
