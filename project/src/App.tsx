@@ -40,6 +40,7 @@ function App() {
                   <Route path="/precos" element={<PricingPage />} />
                   <Route path="/login" element={<LoginPage />} />
                   <Route path="/cadastro" element={<RegisterPage />} />
+                  <Route path="/dashboard" element={<Dashboard />} />
                 </Routes>
               </main>
               <Footer />

@@ -276,6 +276,7 @@ transition={Bounce}
                   >
                     Voltar
                   </Button>
+                  <Link to="/dashboard">
                   <Button 
                     type="submit" 
                     disabled={isLoading}
@@ -283,6 +284,7 @@ transition={Bounce}
                   >
                     {isLoading ? 'Processando...' : 'Criar Conta'}
                   </Button>
+                  </Link>
                 </div>
               </form>
             )}
