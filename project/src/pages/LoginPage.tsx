@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Mail, Lock, Eye, EyeOff, LogIn } from 'lucide-react';
 import Button from '../components/Button';
+import axios from 'axios';
 
 const LoginPage: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -9,16 +10,32 @@ const LoginPage: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsLoading(true);
+  const handleSubmit = async (e: React.FormEvent) => {
+      e.preventDefault();
+      setIsLoading(true);
     
-    // Simulate login process
-    setTimeout(() => {
-      setIsLoading(false);
-      // This would handle the actual login logic in a real application
-    }, 1500);
-  };
+      try {
+        const response = await axios.post('http://localhost:3000/auth/login', {
+          email,
+          senha: password,
+        });
+    
+        const { token } = response.data;
+
+        localStorage.setItem('token', token);
+    
+        alert('Login efetuado com sucesso!');
+    
+      } catch (error: any) {
+        if (error.response) {
+          alert(`Erro: ${error.response.data.message || 'Falha no login'}`);
+        } else {
+          alert('Erro na conexão com o servidor');
+        }
+      } finally {
+        setIsLoading(false);
+      }
+    };
 
   return (
     <div className="min-h-screen pt-20 pb-16 flex flex-col justify-center bg-gray-50">
@@ -169,4 +186,4 @@ const LoginPage: React.FC = () => {
   );
 };
 
-export default LoginPage;
+export default LoginPage; 
