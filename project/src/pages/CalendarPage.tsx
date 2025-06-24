@@ -70,7 +70,7 @@ export const CalendarPage: React.FC = () => {
   const days = getDaysInMonth(currentDate);
 
   return (
-    <div className="p-4 lg:p-6 space-y-6">
+    <div className="p-4 mt-12 lg:p-6 space-y-6">
       {/* Calendar Header */}
       <div className="flex items-center justify-between">
         <div className="flex items-center space-x-4">

@@ -73,7 +73,7 @@ export const AssistantIA: React.FC = () => {
   };
 
   return (
-    <div className="p-4 lg:p-6 h-[calc(100vh-120px)] flex flex-col">
+    <div className="p-4 mt-12 lg:p-6 h-[calc(100vh-120px)] flex flex-col">
       {/* Header */}
       <div className="mb-6">
         <h3 className="text-2xl font-bold text-gray-900 mb-2">Assistente IA</h3>

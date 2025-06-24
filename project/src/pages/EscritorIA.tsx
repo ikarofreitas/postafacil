@@ -56,7 +56,7 @@ Este texto foi criado para maximizar o engajamento e alcançar os objetivos defi
   };
 
   return (
-    <div className="p-4 lg:p-6 space-y-6">
+    <div className="p-4 mt-12 lg:p-6 space-y-6">
       {/* Header */}
       <div>
         <h3 className="text-2xl font-bold text-gray-900 mb-2">Escritor IA</h3>
