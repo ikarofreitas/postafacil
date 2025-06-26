@@ -6,6 +6,7 @@ import Logo from './Logo';
 const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [bodyScroll, setBodyScroll] = useState(true);
   const location = useLocation();
 
   useEffect(() => {
@@ -23,6 +24,8 @@ const Header: React.FC = () => {
   }, [location]);
 
   const toggleMenu = () => {
+    document.body.style.overflow = `${bodyScroll ? 'hidden' : 'scroll'}`
+    setBodyScroll(!bodyScroll)
     setIsOpen(!isOpen);
   };
 
@@ -78,7 +81,7 @@ const Header: React.FC = () => {
 
         {/* Mobile Menu Button */}
         <button 
-          className="md:hidden text-gray-700 focus:outline-none"
+          className="md:hidden text-gray-700 focus:outline-none z-10"
           onClick={toggleMenu}
           aria-label={isOpen ? 'Fechar menu' : 'Abrir menu'}
         >
@@ -88,7 +91,7 @@ const Header: React.FC = () => {
 
       {/* Mobile Navigation */}
       <div 
-        className={`fixed inset-0 bg-white z-40 transition-transform duration-300 transform ${
+        className={`fixed inset-0 bg-white transition-transform duration-300 transform ${
           isOpen ? 'translate-x-0' : '-translate-x-full'
         } md:hidden pt-20`}
       >
