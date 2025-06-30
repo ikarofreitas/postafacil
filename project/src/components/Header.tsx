@@ -99,24 +99,28 @@ const Header: React.FC = () => {
           <Link 
             to="/como-funciona" 
             className="text-gray-800 text-lg font-medium border-b border-gray-200 pb-2"
+            onClick={toggleMenu}
           >
             Como Funciona
           </Link>
           <Link 
             to="/precos" 
             className="text-gray-800 text-lg font-medium border-b border-gray-200 pb-2"
+            onClick={toggleMenu}
           >
             Preços
           </Link>
           <Link 
             to="/login" 
             className="text-gray-800 text-lg font-medium border-b border-gray-200 pb-2"
+            onClick={toggleMenu}
           >
             Login
           </Link>
           <Link 
             to="/cadastro" 
             className="bg-primary text-white px-5 py-3 rounded-lg font-medium hover:bg-primary-dark transition-colors duration-300 text-center shadow-md"
+            onClick={toggleMenu}  
           >
             Experimente Grátis
           </Link>
