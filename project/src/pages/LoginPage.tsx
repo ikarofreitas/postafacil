@@ -113,7 +113,7 @@ const LoginPage: React.FC = () => {
                     id="remember_me"
                     name="remember_me"
                     type="checkbox"
-                    className="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded"
+                    className="h-4 w-4 accent-primary-dark focus:ring-primary border-gray-300 rounded"
                   />
                   <label htmlFor="remember_me" className="ml-2 block text-sm text-gray-700">
                     Lembrar de mim
