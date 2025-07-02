@@ -35,7 +35,7 @@ const Header: React.FC = () => {
         isScrolled ? 'bg-white shadow-md py-2' : 'bg-transparent py-4'
       }`}
     >
-      <div className="container mx-auto px-4 flex justify-between items-center">
+      <div className="mx-auto px-4 flex justify-between items-center">
         <Link to="/" className="flex items-center">
           <Logo className={`h-10 w-auto ${isScrolled ? 'text-primary' : 'text-primary'}`} />
           <span className={`ml-2 font-bold text-xl ${

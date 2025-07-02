@@ -73,14 +73,14 @@ export const CalendarPage: React.FC = () => {
     <div className="p-4 mt-12 lg:p-6 space-y-6">
       {/* Calendar Header */}
       <div className="flex items-center justify-between">
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center">
           <button
             onClick={() => navigateMonth('prev')}
             className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
           >
             <ChevronLeft className="w-5 h-5 text-gray-600" />
           </button>
-          <h3 className="text-2xl font-bold text-gray-900">
+          <h3 className="sm:text-2xl text-base font-bold text-gray-900">
             {months[currentDate.getMonth()]} {currentDate.getFullYear()}
           </h3>
           <button

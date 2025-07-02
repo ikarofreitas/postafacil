@@ -218,7 +218,7 @@ const PricingPage: React.FC = () => {
             <Button 
               variant="secondary" 
               size="lg"
-              className="bg-white text-gray-950 hover:bg-gray-100"
+              className="bg-white text-red-950 hover:bg-gray-100"
             >
               Começar Agora
             </Button>
