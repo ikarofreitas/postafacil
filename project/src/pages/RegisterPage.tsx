@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { Mail, Lock, Eye, EyeOff, User, Store, MapPin } from 'lucide-react';
 import Button from '../components/Button';
@@ -24,8 +25,7 @@ const regions = [
 ];
 
 const RegisterPage: React.FC = () => {
-
-  
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     name: '',
@@ -40,6 +40,8 @@ const RegisterPage: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
+  console.log('step atual:', step);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData({
@@ -50,20 +52,27 @@ const RegisterPage: React.FC = () => {
 
   const nextStep = (e: React.FormEvent) => {
     e.preventDefault();
-    setStep(step + 1);
+    setStep(2);
   };
 
-  const prevStep = () => {
-    setStep(step - 1);
+  const prevStep = (e? : React.MouseEvent<HTMLButtonElement>) => {
+    e?.preventDefault();
+    setStep(1); 
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    try {
     e.preventDefault();
-    setIsLoading(true);
-    const data = await api.post('/users/customer', formData);
-    setIsLoading(false);
-    console.log(data);
+
+    if (formData.password.length < 8) {
+      toast.error('A senha deve ter pelo menos 8 caracteres');
+      return;
+    }
+    try {
+      setIsLoading(true);
+      const data = await api.post('/users/customer', formData);
+      setIsLoading(false);
+      console.log(data);
+      navigate('/dashboard')
     } catch (error: any) {
       if (error.response && error.response.status === 400) {
         const message = error.response.data.message || 'Este email já está em uso';
@@ -79,18 +88,18 @@ const RegisterPage: React.FC = () => {
   return (
     <div className="min-h-screen pt-20 pb-16 flex flex-col justify-center bg-gray-50">
       <ToastContainer
-position="top-right"
-autoClose={5000}
-hideProgressBar={false}
-newestOnTop={false}
-closeOnClick={false}
-rtl={false}
-pauseOnFocusLoss
-draggable
-pauseOnHover
-theme="colored"
-transition={Bounce}
-/>
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+        transition={Bounce}
+      />
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <div className="text-center">
           <h2 className="text-3xl font-bold text-gray-900">
@@ -103,7 +112,6 @@ transition={Bounce}
             }
           </p>
         </div>
-        
         <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
           <div className="bg-white py-8 px-4 shadow-lg sm:rounded-lg sm:px-10">
             {step === 1 ? (
@@ -128,7 +136,6 @@ transition={Bounce}
                     />
                   </div>
                 </div>
-
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium text-gray-700">
                     Email
@@ -150,7 +157,6 @@ transition={Bounce}
                     />
                   </div>
                 </div>
-
                 <div>
                   <label htmlFor="password" className="block text-sm font-medium text-gray-700">
                     Senha
@@ -188,7 +194,6 @@ transition={Bounce}
                     Mínimo de 8 caracteres
                   </p>
                 </div>
-                
                 <div>
                   <Button type="submit" full>
                     Continuar
@@ -217,7 +222,6 @@ transition={Bounce}
                     />
                   </div>
                 </div>
-
                 <div>
                   <label htmlFor="category" className="block text-sm font-medium text-gray-700">
                     Categoria do negócio
@@ -240,7 +244,6 @@ transition={Bounce}
                     </select>
                   </div>
                 </div>
-
                 <div>
                   <label htmlFor="region" className="block text-sm font-medium text-gray-700">
                     Região
@@ -266,7 +269,6 @@ transition={Bounce}
                     </select>
                   </div>
                 </div>
-
                 <div className="flex flex-col sm:flex-row gap-3">
                   <Button 
                     type="button" 
@@ -286,7 +288,6 @@ transition={Bounce}
                 </div>
               </form>
             )}
-
             <div className="mt-6 text-center">
               <p className="text-sm text-gray-600">
                 Já tem uma conta?{' '}
