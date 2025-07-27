@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { 
   LayoutDashboard, 
   Calendar,
@@ -16,14 +17,23 @@ interface SidebarProps {
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
+  const location = useLocation();
+  
   const menuItems = [
-    { icon: LayoutDashboard, label: 'Dashboard', active: true },
-    { icon: Calendar, label: 'Calendário de Posts', active: false },
-    { icon: FolderOpen, label: 'Biblioteca', active: false },
-    { icon: PenTool, label: 'Escritor IA', active: false },
-    { icon: Bot, label: 'Assistente IA', active: false },
-    { icon: BarChart3, label: 'Análises', active: false }
+    { icon: LayoutDashboard, label: 'Dashboard', path: '/dashboard', active: location.pathname === '/dashboard' },
+    { icon: Calendar, label: 'Calendário de Posts', path: '/calendario', active: location.pathname === '/calendario' },
+    { icon: FolderOpen, label: 'Biblioteca', path: '/biblioteca', active: location.pathname === '/biblioteca' },
+    { icon: PenTool, label: 'Escritor IA', path: '/escritor', active: location.pathname === '/escritor' },
+    { icon: Bot, label: 'Assistente IA', path: '/assistente', active: location.pathname === '/assistente' },
+    { icon: BarChart3, label: 'Análises', path: '/analises', active: location.pathname === '/analises' }
   ];
+
+  const handleNavigation = () => {
+    // Fecha o sidebar em dispositivos móveis após navegação
+    if (window.innerWidth < 1024) {
+      onClose();
+    }
+  };
 
   return (
     <div className={`
@@ -52,8 +62,10 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
         {menuItems.map((item, index) => {
           const Icon = item.icon;
           return (
-            <button
+            <Link
               key={index}
+              to={item.path}
+              onClick={handleNavigation}
               className={`
                 w-full flex items-center space-x-3 px-4 py-3 rounded-lg text-left transition-all duration-200
                 ${item.active 
@@ -64,22 +76,26 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
             >
               <Icon className="w-5 h-5" />
               <span className="font-medium">{item.label}</span>
-            </button>
+            </Link>
           );
         })}
       </nav>
 
       {/* CTA Button */}
       <div className="px-4 mt-8">
-        <button className="
-          w-full bg-gradient-to-r from-orange-500 to-red-500 text-white px-4 py-3 rounded-lg 
-          font-semibold flex items-center justify-center space-x-2 
-          hover:from-orange-600 hover:to-red-600 transition-all duration-200 
-          transform hover:scale-105 shadow-lg hover:shadow-xl
-        ">
+        <Link
+          to="/calendario"
+          onClick={handleNavigation}
+          className="
+            w-full bg-gradient-to-r from-orange-500 to-red-500 text-white px-4 py-3 rounded-lg 
+            font-semibold flex items-center justify-center space-x-2 
+            hover:from-orange-600 hover:to-red-600 transition-all duration-200 
+            transform hover:scale-105 shadow-lg hover:shadow-xl
+          "
+        >
           <Plus className="w-5 h-5" />
           <span>Agendar Post</span>
-        </button>
+        </Link>
       </div>
 
       {/* Footer */}

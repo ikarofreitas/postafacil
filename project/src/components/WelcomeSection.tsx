@@ -1,7 +1,11 @@
 import React from 'react';
 import { Sparkles } from 'lucide-react';
 
-const WelcomeSection: React.FC = () => {
+interface WelcomeProps{
+  userName: string;
+}
+
+const WelcomeSection: React.FC<WelcomeProps> = ({userName}) => {
   const currentHour = new Date().getHours();
   const greeting = currentHour < 12 ? 'Bom dia' : currentHour < 18 ? 'Boa tarde' : 'Boa noite';
 
@@ -10,8 +14,8 @@ const WelcomeSection: React.FC = () => {
       <div className="flex items-center space-x-3 mb-4">
         <Sparkles className="w-8 h-8" />
         <div>
-          <h1 className="text-3xl font-bold">{greeting}, Maria!</h1>
-          <p className="text-orange-100 text-lg">Pronta para turbinar seu Instagram hoje?</p>
+          <h1 className="text-3xl font-bold">{greeting}, {userName}!</h1>
+          <p className="text-orange-100 text-lg">Vamos turbinar seu Instagram hoje?</p>
         </div>
       </div>
       

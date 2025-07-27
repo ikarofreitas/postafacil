@@ -67,8 +67,8 @@ const HomePage: React.FC = () => {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-b from-white to-gray-100 pt-24 pb-16 md:pt-32 md:pb-24">
-        <div className="container mx-auto px-4">
+      <section className="relative bg-gradient-to-b from-white to-gray-100 pt-24 pb-16 md:pt-32 md:pb-24 ">
+        <div className="container mx-auto px-4 ">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="text-center lg:text-left">
               <div className="inline-block bg-primary/10 text-primary font-medium rounded-full px-4 py-1 text-sm mb-6 cursor-default">

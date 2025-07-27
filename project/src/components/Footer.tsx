@@ -20,12 +20,7 @@ const Footer: React.FC = () => {
               <a href="https://instagram.com" className="text-gray-400 hover:text-primary transition-colors">
                 <Instagram size={20} />
               </a>
-              <a href="https://facebook.com" className="text-gray-400 hover:text-primary transition-colors">
-                <Facebook size={20} />
-              </a>
-              <a href="https://twitter.com" className="text-gray-400 hover:text-primary transition-colors">
-                <Twitter size={20} />
-              </a>
+              
             </div>
           </div>
           

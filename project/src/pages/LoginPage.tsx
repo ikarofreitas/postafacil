@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { Mail, Lock, Eye, EyeOff, LogIn } from 'lucide-react';
 import Button from '../components/Button';
@@ -10,32 +11,40 @@ const LoginPage: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-      e.preventDefault();
-      setIsLoading(true);
-    
-      try {
-        const response = await axios.post('http://localhost:3000/auth/login', {
-          email,
-          senha: password,
-        });
-    
-        const { token } = response.data;
+  const navigate = useNavigate();
 
-        localStorage.setItem('token', token);
-    
-        alert('Login efetuado com sucesso!');
-    
-      } catch (error: any) {
-        if (error.response) {
-          alert(`Erro: ${error.response.data.message || 'Falha no login'}`);
-        } else {
-          alert('Erro na conexão com o servidor');
-        }
-      } finally {
-        setIsLoading(false);
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+  
+    try {
+      const response = await axios.post('http://localhost:3000/auth/login', {
+        email,
+        senha: password,
+      });
+  
+      const { token, user } = response.data;
+  
+      if (!token || !user ) {
+        alert('Credenciais inválidas.');
+        return;
       }
-    };
+  
+      localStorage.setItem('token', token);
+      localStorage.setItem('user', JSON.stringify(user)); // salva nome e email
+      alert('Login efetuado com sucesso!');
+      navigate('/dashboard', { state: { user } }); // envia o corpo inteiro do usuário
+  
+    } catch (error: any) {
+      if (error.response) {
+        alert(`Erro: ${error.response.data.message || 'Falha no login'}`);
+      } else {
+        alert('Erro na conexão com o servidor');
+      }
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <div className="min-h-screen pt-20 pb-16 flex flex-col justify-center bg-gray-50">

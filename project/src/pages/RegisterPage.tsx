@@ -62,17 +62,35 @@ const RegisterPage: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
+  
     if (formData.password.length < 8) {
       toast.error('A senha deve ter pelo menos 8 caracteres');
       return;
     }
+  
     try {
       setIsLoading(true);
-      const data = await api.post('/users/customer', formData);
-      setIsLoading(false);
-      console.log(data);
-      navigate('/dashboard')
+      await api.post('/users/customer', formData);
+  
+      // Login automático após cadastro
+      const loginResponse = await api.post('/auth/login', {
+        email: formData.email,
+        senha: formData.password,
+      });
+  
+      const { token, user } = loginResponse.data;
+  
+      if (!token || !user) {
+        toast.error('Erro ao fazer login automático');
+        setIsLoading(false);
+        return;
+      }
+  
+      localStorage.setItem('token', token);
+      localStorage.setItem('user', JSON.stringify(user));
+      toast.success('Conta criada e login efetuado com sucesso!');
+      navigate('/dashboard', { state: { user } });
+  
     } catch (error: any) {
       if (error.response && error.response.status === 400) {
         const message = error.response.data.message || 'Este email já está em uso';

@@ -1,10 +1,28 @@
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Sidebar from '../components/SideBar';
 import Header from '../components/HeaderDashboard';
 import MainDashboard from '../components/MainDashboard';
+import { useLocation } from 'react-router-dom';
 
 function Dashboard() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [userName, setUserName] = useState('');
+  const location = useLocation();
+
+useEffect(() => {
+  if (location.state?.user) {
+    setUserName(location.state.user.name);
+    localStorage.setItem('user', JSON.stringify(location.state.user));
+  } else {
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      setUserName(JSON.parse(storedUser).name);
+    }
+  }
+}, [location.state]);
+
+  
+
 
   return (
     <div className="flex h-screen bg-gray-50">
@@ -24,9 +42,9 @@ function Dashboard() {
       
       {/* Main Content */}
       <div className="flex-1 flex flex-col min-h-screen overflow-x-hidden">
-        <Header onMenuClick={() => setSidebarOpen(true)} />
+      <Header onMenuClick={() => setSidebarOpen(true)} userName={userName}/>
         <div className="flex-1 overflow-auto">
-          <MainDashboard />
+          <MainDashboard  userName={userName}/>
         </div>
       </div>
     </div>

@@ -37,7 +37,7 @@ function App() {
           element={
             <>
               <Header />
-              <main>
+              <main className='animate-[fadeIn_1s_ease-out_forwards]'>
                 <Routes>
                   <Route path="/" element={<HomePage />} />
                   <Route path="/como-funciona" element={<HowItWorksPage />} />
