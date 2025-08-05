@@ -9,36 +9,31 @@ export const EscritorIA: React.FC = () => {
 
   const handleGenerate = async () => {
     if (!prompt.trim()) return;
-    
+  
     setIsGenerating(true);
-    // Simulate AI generation
-    setTimeout(() => {
-      const sampleText = `# ${title || 'Título do Post'}
-
-Baseado no seu prompt: "${prompt}"
-
-Este é um exemplo de texto gerado pela IA. Em uma implementação real, aqui seria integrada uma API de IA como OpenAI GPT-4, Claude, ou similar.
-
-## Conteúdo Principal
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
-
-### Pontos Importantes:
-
-- Engajamento com o público-alvo
-- Call-to-action claro e direto
-- Uso de hashtags relevantes
-- Timing ideal para publicação
-
-## Conclusão
-
-Este texto foi criado para maximizar o engajamento e alcançar os objetivos definidos no prompt inicial.
-
-#marketing #digitalmarketing #conteudo #redes sociais`;
-      
-      setGeneratedText(sampleText);
+    setGeneratedText('');
+  
+    try {
+      const response = await fetch('http://localhost:3000/users/escritor', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ topic: prompt }),
+      });
+  
+      if (!response.ok) {
+        throw new Error('Erro ao gerar texto com IA');
+      }
+  
+      const data = await response.json();
+      setGeneratedText(data.post); 
+    } catch (error) {
+      console.error('Erro ao gerar texto:', error);
+      alert('Houve um erro ao gerar o texto. Verifique o backend.');
+    } finally {
       setIsGenerating(false);
-    }, 2000);
+    }
   };
 
   const copyToClipboard = () => {
