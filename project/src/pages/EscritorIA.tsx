@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { Wand2, Copy, Download, RefreshCw } from 'lucide-react';
+import { toast, ToastContainer, Bounce } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import DashboardLayout from '../components/DashboardLayout';
 
 export const EscritorIA: React.FC = () => {
   const [title, setTitle] = useState('');
@@ -27,10 +30,27 @@ export const EscritorIA: React.FC = () => {
       }
   
       const data = await response.json();
-      setGeneratedText(data.post); 
+      setGeneratedText(data.post);
+      toast.success('Texto gerado com sucesso!', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        transition: Bounce,
+      });
     } catch (error) {
       console.error('Erro ao gerar texto:', error);
-      alert('Houve um erro ao gerar o texto. Verifique o backend.');
+      toast.error('Houve um erro ao gerar o texto. Verifique o backend.', {
+        position: "top-right",
+        autoClose: 4000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        transition: Bounce,
+      });
     } finally {
       setIsGenerating(false);
     }
@@ -38,6 +58,15 @@ export const EscritorIA: React.FC = () => {
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(generatedText);
+    toast.success('Texto copiado para a área de transferência!', {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      transition: Bounce,
+    });
   };
 
   const downloadText = () => {
@@ -48,10 +77,33 @@ export const EscritorIA: React.FC = () => {
     document.body.appendChild(element);
     element.click();
     document.body.removeChild(element);
+    toast.success('Texto baixado com sucesso!', {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      transition: Bounce,
+    });
   };
 
   return (
-    <div className="p-4 mt-12 lg:p-6 space-y-6">
+    <DashboardLayout>
+      <div className="p-4 lg:p-6 space-y-6">
+        <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+        transition={Bounce}
+      />
       {/* Header */}
       <div>
         <h3 className="text-2xl font-bold text-gray-900 mb-2">Escritor IA</h3>
@@ -200,6 +252,7 @@ export const EscritorIA: React.FC = () => {
           )}
         </div>
       </div>
-    </div>
+      </div>
+    </DashboardLayout>
   );
 };

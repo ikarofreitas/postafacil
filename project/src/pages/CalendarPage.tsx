@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ChevronLeft, ChevronRight, Plus } from 'lucide-react';
+import DashboardLayout from '../components/DashboardLayout';
 
 const daysOfWeek = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
 const months = [
@@ -70,7 +71,8 @@ export const CalendarPage: React.FC = () => {
   const days = getDaysInMonth(currentDate);
 
   return (
-    <div className="p-4 mt-12 lg:p-6 space-y-6">
+    <DashboardLayout>
+      <div className="p-4 lg:p-6 space-y-6">
       {/* Calendar Header */}
       <div className="flex items-center justify-between">
         <div className="flex items-center">
@@ -178,6 +180,7 @@ export const CalendarPage: React.FC = () => {
           )}
         </div>
       )}
-    </div>
+      </div>
+    </DashboardLayout>
   );
 };

@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import { Mail, Lock, Eye, EyeOff, LogIn } from 'lucide-react';
 import Button from '../components/Button';
 import axios from 'axios';
+import { toast, ToastContainer, Bounce } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const LoginPage: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -26,20 +28,52 @@ const LoginPage: React.FC = () => {
       const { token, user } = response.data;
   
       if (!token || !user ) {
-        alert('Credenciais inválidas.');
+        toast.error('Credenciais inválidas.', {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          transition: Bounce,
+        });
         return;
       }
   
       localStorage.setItem('token', token);
       localStorage.setItem('user', JSON.stringify(user)); // salva nome e email
-      alert('Login efetuado com sucesso!');
+      toast.success('Login efetuado com sucesso!', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        transition: Bounce,
+      });
       navigate('/dashboard', { state: { user } }); // envia o corpo inteiro do usuário
   
     } catch (error: any) {
       if (error.response) {
-        alert(`Erro: ${error.response.data.message || 'Falha no login'}`);
+        toast.error(`Erro: ${error.response.data.message || 'Falha no login'}`, {
+          position: "top-right",
+          autoClose: 4000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          transition: Bounce,
+        });
       } else {
-        alert('Erro na conexão com o servidor');
+        toast.error('Erro na conexão com o servidor', {
+          position: "top-right",
+          autoClose: 4000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          transition: Bounce,
+        });
       }
     } finally {
       setIsLoading(false);
@@ -48,6 +82,19 @@ const LoginPage: React.FC = () => {
 
   return (
     <div className="min-h-screen pt-20 pb-16 flex flex-col justify-center bg-gray-50">
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+        transition={Bounce}
+      />
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <div className="text-center">
           <h2 className="text-3xl font-bold text-gray-900">Bem-vindo de volta</h2>

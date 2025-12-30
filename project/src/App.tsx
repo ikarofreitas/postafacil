@@ -31,7 +31,14 @@ function App() {
     <Router>
       <ScrollToTop />
       <Routes>
+        {/* Rotas sem Header (páginas internas do dashboard) */}
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/calendario" element={<CalendarPage />} />
+        <Route path="/escritor" element={<EscritorIA />} />
+        <Route path="/biblioteca" element={<BibliotecadePosts />} />
+        <Route path="/assistente" element={<AssistantIA />} />
+        
+        {/* Rotas com Header (páginas públicas) */}
         <Route
           path="*"
           element={
@@ -44,11 +51,6 @@ function App() {
                   <Route path="/precos" element={<PricingPage />} />
                   <Route path="/login" element={<LoginPage />} />
                   <Route path="/cadastro" element={<RegisterPage />} />
-                  <Route path="/dashboard" element={<Dashboard />} />
-                  <Route path= "/calendario" element={<CalendarPage />} />
-                  <Route path= "/escritor" element={<EscritorIA />} />
-                  <Route path= "/biblioteca" element={<BibliotecadePosts />} />
-                  <Route path= "/assistente" element={<AssistantIA />} />
                 </Routes>
               </main>
               <Footer />

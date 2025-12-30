@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Search, Filter, Upload, Image, Video, FileText, Grid, List } from 'lucide-react';
 import { MediaFile } from '../types/index';
+import DashboardLayout from '../components/DashboardLayout';
 
 const mockFiles: MediaFile[] = [
   {
@@ -91,7 +92,8 @@ export const BibliotecadePosts: React.FC = () => {
   };
 
   return (
-    <div className="p-4 mt-12 lg:p-6 space-y-6">
+    <DashboardLayout>
+      <div className="p-4 lg:p-6 space-y-6">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-4 sm:space-y-0">
         <h3 className="text-2xl font-bold text-gray-900">Biblioteca de Mídia</h3>
@@ -235,6 +237,7 @@ export const BibliotecadePosts: React.FC = () => {
           </div>
         )}
       </div>
-    </div>
+      </div>
+    </DashboardLayout>
   );
 };

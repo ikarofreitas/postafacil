@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Send, MessageCircle, Sparkles } from 'lucide-react';
 import { ChatMessage } from '../types/index';
+import DashboardLayout from '../components/DashboardLayout';
 
 const suggestedQuestions = [
   'Como melhorar o engajamento nos posts?',
@@ -49,7 +50,7 @@ export const AssistantIA: React.FC = () => {
     }, 1500);
   };
 
-  const generateAIResponse = (userInput: string): string => {
+  const generateAIResponse = (_userInput: string): string => {
     const responses = [
       'Excelente pergunta! Para melhorar o engajamento, recomendo focar em conteúdo que gere interação, como perguntas, enquetes e posts que incentivem comentários.',
       'Uma estratégia eficaz é conhecer bem seu público-alvo e criar conteúdo que ressoe com seus interesses e necessidades.',
@@ -73,7 +74,8 @@ export const AssistantIA: React.FC = () => {
   };
 
   return (
-    <div className="p-4 mt-12 lg:p-6 h-[calc(100vh-120px)] flex flex-col">
+    <DashboardLayout>
+      <div className="p-4 lg:p-6 h-full flex flex-col">
       {/* Header */}
       <div className="mb-6">
         <h3 className="text-2xl font-bold text-gray-900 mb-2">Assistente IA</h3>
@@ -184,6 +186,7 @@ export const AssistantIA: React.FC = () => {
           </div>
         )}
       </div>
-    </div>
+      </div>
+    </DashboardLayout>
   );
 };
